@@ -1,18 +1,48 @@
 package Candidatura;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ProcessoSeletivo {
     public static void main(String[] args) {
-    imprimirSelecionados();
+
+        String[] candidatos = {"MARIELE","MARIA","ENZO","JAMES","MARCOS"};
+        for (String candidato: candidatos){
+            entrandoEmContato(candidato);
+        }
 
     }
 
     static void imprimirSelecionados(){
         String[] candidatos = {"MARIELE","MARIA","ENZO","JAMES","MARCOS"};
-        System.out.println("imprimendo lista de candidados");
+        System.out.println("imprimendo lista de candidatos");
         for(int indece=0; indece<candidatos.length;indece++){
             System.out.println("o candidado de n " + (indece+1) + " é " +candidatos[indece]);
         };
+    }
+    static boolean atender(){
+        return new Random().nextInt(3)==1;
+    }
+
+    static void entrandoEmContato(String candidato){
+        int tentativasRealizada=1;
+        boolean continuaTentando= true;
+        boolean atendeu = false;
+        do {
+            atendeu=atender();
+            continuaTentando= !atendeu;
+
+            if (continuaTentando){
+                tentativasRealizada++;
+            }else{
+                System.out.println("Contato realizado com sucesso.");
+            }
+        }while (continuaTentando && tentativasRealizada<3);
+
+        if (atendeu){
+            System.out.println("CONSEGUIMOS CONTATO COM " +candidato+ " NA " +tentativasRealizada+ " TENTATIVA");
+        }else {
+            System.out.println("NÃO CONSEGUIMOS CONTATO COM "+candidato+ " NUMERO MAXIMO DE TENTATIVAS "+ tentativasRealizada+" REALIZADA");
+        }
 
     }
 
@@ -34,8 +64,6 @@ public class ProcessoSeletivo {
         }
 
     }
-
-
 
     static double valorPretendido(){
         return ThreadLocalRandom.current().nextDouble(1800, 2000);
