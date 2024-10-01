@@ -1,10 +1,18 @@
 package Candidatura;
-import java.sql.SQLOutput;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ProcessoSeletivo {
     public static void main(String[] args) {
-        selecaoCandidatos();
+    imprimirSelecionados();
+
+    }
+
+    static void imprimirSelecionados(){
+        String[] candidatos = {"MARIELE","MARIA","ENZO","JAMES","MARCOS"};
+        System.out.println("imprimendo lista de candidados");
+        for(int indece=0; indece<candidatos.length;indece++){
+            System.out.println("o candidado de n " + (indece+1) + " é " +candidatos[indece]);
+        };
 
     }
 
